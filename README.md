@@ -1,5 +1,3 @@
-# reverse-tools
-
 ## r3
 *Show all file extensions recursively*
 
