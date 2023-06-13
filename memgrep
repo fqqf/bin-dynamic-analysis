@@ -1,0 +1,12 @@
+#!/bin/bash
+
+for pid in $(ps axo pid); do
+  gcore $pid > /dev/null 2>&1
+  echo "$(ps -p $pid -o comm=):"
+  string="$1"
+  if grep -q "$string" core.$pid > /dev/null 2>&1; then
+    echo "$(ps -p $pid -o comm=) $pid contains string '$string'"
+  fi
+  rm core.$pid > /dev/null 2>&1
+done
+

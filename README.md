@@ -1,3 +1,18 @@
+## memgrep
+*Tries to find string grepping memory of all processes (memgrepv does the same, but with progress bar)*
+
+### Usage:
+```bash
+$ memgrep PAYLOADSTRING
+l2mgr:
+snmpd:
+mmmoed:
+nginx 5855 contains string 'PAYLOADSTRING'
+httpd 6174 contains string 'PAYLOADSTRING'
+httpd 6176 contains string 'PAYLOADSTRING'
+systemd:
+```
+
 ## r3
 *Show all file extensions recursively*
 
