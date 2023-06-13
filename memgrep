@@ -2,7 +2,7 @@
 
 for pid in $(ps axo pid); do
   gcore $pid > /dev/null 2>&1
-  echo "$(ps -p $pid -o comm=):"
+  echo "$(ps -p $pid -o comm= 2>/dev/null):"
   string="$1"
   if grep -q "$string" core.$pid > /dev/null 2>&1; then
     echo "$(ps -p $pid -o comm=) $pid contains string '$string'"
