@@ -1,5 +1,5 @@
 ## memgrep
-*Find string in memory of all processes (memgrepv does the same, but with progress bar)*
+*Find string in memory of all processes (fast-memgrep does the same, but with multithreading)*
 
 ### Usage:
 ```bash
