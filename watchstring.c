@@ -2,8 +2,9 @@
 #include <iostream>
 #include <cstring>
 
-// Launch with ./pin -pid 5532 -t watchstring.so -s "UniqueString"
+// Launch with ./pin -pid 43242 -t watchstring.so -s "UniqueString"
 // https://www.youtube.com/watch?v=A3iRjGdyoLo
+// Download library https://www.intel.com/content/www/us/en/developer/articles/tool/pin-a-dynamic-binary-instrumentation-tool.html
 
 KNOB<string> TargetString(KNOB_MODE_WRITEONCE, "pintool", "s", "", "target string to detect");
 
