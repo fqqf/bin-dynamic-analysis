@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cstring>
 
-// Launch with ./pin -pid 5532 -t pintool.so -s "UniqueString"
+// Launch with ./pin -pid 5532 -t watchstring.so -s "UniqueString"
 
 KNOB<string> TargetString(KNOB_MODE_WRITEONCE, "pintool", "s", "", "target string to detect");
 
