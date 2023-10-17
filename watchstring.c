@@ -3,6 +3,7 @@
 #include <cstring>
 
 // Launch with ./pin -pid 5532 -t watchstring.so -s "UniqueString"
+// https://www.youtube.com/watch?v=A3iRjGdyoLo
 
 KNOB<string> TargetString(KNOB_MODE_WRITEONCE, "pintool", "s", "", "target string to detect");
 
