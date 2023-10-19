@@ -1,5 +1,5 @@
 ## watchstring
-*Find string in memory write. You can use it to determine which instruction interacts with your string*
+*Detect which part of code interacts with certain string*
 
 ### Usage:
 ```bash
@@ -10,7 +10,7 @@ $ ./pin -pid 5605 -t watchstring.so -s "PAYLOADSTRING" -f "/tmp/output.log"
 
 $ cat /tmp/output.log
 Memory write containing 'PAYLOADSTRING' detected at IP: 0x7f32ff
-
+Memory reаd containing 'PAYLOADSTRING' detected at IP: 0x7f7fab
 ```
 ## memgrep
 *Find string in memory of all processes (fast-memgrep does the same, but with multithreading)*
