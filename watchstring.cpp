@@ -7,7 +7,6 @@
 // https://www.youtube.com/watch?v=A3iRjGdyoLo
 // Download library https://www.intel.com/content/www/us/en/developer/articles/tool/pin-a-dynamic-binary-instrumentation-tool.html
 
-// Global ofstream object for writing to the file
 std::ofstream logFile;
 
 KNOB<std::string> TargetString(KNOB_MODE_WRITEONCE, "pintool", "s", "", "target string to detect");
@@ -16,12 +15,22 @@ KNOB<std::string> LogFilePath(KNOB_MODE_WRITEONCE, "pintool", "f", "", "path to 
 VOID WriteMem(VOID * ip, VOID * addr, UINT32 size) {
     const char* target = TargetString.Value().c_str();
     size_t target_length = strlen(target);
-    // logFile << "Memory write detected at " << ip << std::endl; // Add to debug
     
-    // Loop through the memory write to see if it contains the target string
     for (UINT32 i = 0; i <= size - target_length; i++) {
         if (strncmp((char*)addr + i, target, target_length) == 0) {
             logFile << "Memory write containing '" << target << "' detected at IP: " << ip << std::endl;
+            break;
+        }
+    }
+}
+
+VOID ReadMem(VOID * ip, VOID * addr, UINT32 size) {
+    const char* target = TargetString.Value().c_str();
+    size_t target_length = strlen(target);
+    
+    for (UINT32 i = 0; i <= size - target_length; i++) {
+        if (strncmp((char*)addr + i, target, target_length) == 0) {
+            logFile << "Memory read containing '" << target << "' detected at IP: " << ip << std::endl;
             break;
         }
     }
@@ -36,10 +45,18 @@ VOID Instruction(INS ins, VOID *v) {
             IARG_MEMORYWRITE_SIZE,
             IARG_END);
     }
+    
+    if (INS_IsMemoryRead(ins)) {
+        INS_InsertPredicatedCall(
+            ins, IPOINT_BEFORE, (AFUNPTR)ReadMem,
+            IARG_INST_PTR,
+            IARG_MEMORYREAD_EA,
+            IARG_MEMORYREAD_SIZE,
+            IARG_END);
+    }
 }
 
 int main(int argc, char *argv[]) {
-    // Initialize pin
     if (PIN_Init(argc, argv)) {
         std::cerr << "Initialization error" << std::endl;
         return -1;
@@ -50,8 +67,7 @@ int main(int argc, char *argv[]) {
         return -1;
     }
 
-    // Open the log file
-    logFile.open(LogFilePath.Value().c_str(), std::ios::out | std::ios::app); // Open in append mode
+    logFile.open(LogFilePath.Value().c_str(), std::ios::out | std::ios::app);
     if (!logFile.is_open()) {
         std::cerr << "Failed to open the log file: " << LogFilePath.Value() << std::endl;
         return -1;
@@ -59,10 +75,8 @@ int main(int argc, char *argv[]) {
 
     INS_AddInstrumentFunction(Instruction, 0);
     
-    // Start the program
     PIN_StartProgram();
     
-    // Close the log file (though this point might not be reached if the program doesn't naturally terminate)
     logFile.close();
 
     return 0;
