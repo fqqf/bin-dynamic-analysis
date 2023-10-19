@@ -10,13 +10,13 @@
 // Global ofstream object for writing to the file
 std::ofstream logFile;
 
-KNOB<string> TargetString(KNOB_MODE_WRITEONCE, "pintool", "s", "", "target string to detect");
-KNOB<string> LogFilePath(KNOB_MODE_WRITEONCE, "pintool", "f", "", "path to the log file");
+KNOB<std::string> TargetString(KNOB_MODE_WRITEONCE, "pintool", "s", "", "target string to detect");
+KNOB<std::string> LogFilePath(KNOB_MODE_WRITEONCE, "pintool", "f", "", "path to the log file");
 
 VOID WriteMem(VOID * ip, VOID * addr, UINT32 size) {
     const char* target = TargetString.Value().c_str();
     size_t target_length = strlen(target);
-    // logFile << "Memory write detected" << std::endl; // Add to debug
+    // logFile << "Memory write detected at " << ip << std::endl; // Add to debug
     
     // Loop through the memory write to see if it contains the target string
     for (UINT32 i = 0; i <= size - target_length; i++) {
