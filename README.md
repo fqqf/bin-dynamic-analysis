@@ -1,3 +1,16 @@
+## watchstring
+*Find string in memory write. You can use it to determine which instruction interacts with your string*
+```bash
+Usage:
+$ ps -ef | grep optmgr
+root      5605  3011  0 Oct17 ?        00:01:49 /usr/local/bin/optmgr
+
+$ ./pin -pid 5605 -t watchstring.so -s "PAYLOADSTRING" -f "/tmp/output.log"
+
+$ cat /tmp/output.log
+Memory write containing 'PAYLOADSTRING' detected at IP: 0x7f32ff
+
+```
 ## memgrep
 *Find string in memory of all processes (fast-memgrep does the same, but with multithreading)*
 
@@ -14,7 +27,7 @@ systemd:
 ```
 
 ## r3
-*Show all file extensions recursively*
+*Get info about directory files' extensions*
 
 ### Usage:
 ```bash
