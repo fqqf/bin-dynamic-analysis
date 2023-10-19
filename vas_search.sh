@@ -5,7 +5,7 @@ find_string_in_process() { # DO NOT USE
     local SEARCH_STRING="$2"
 
     if [ -z "$PID" ] || [ -z "$SEARCH_STRING" ]; then
-        echo "Usage: find_string_in_process <PID> <STRING>"
+        echo "Usage: vas_search.sh <PID> <STRING>"
         return 1
     fi
 
