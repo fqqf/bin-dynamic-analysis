@@ -1,7 +1,8 @@
 ## watchstring
 *Find string in memory write. You can use it to determine which instruction interacts with your string*
+
+### Usage:
 ```bash
-Usage:
 $ ps -ef | grep optmgr
 root      5605  3011  0 Oct17 ?        00:01:49 /usr/local/bin/optmgr
 
