@@ -1,5 +1,5 @@
 ## watchstring
-*Detect at what instruction address your binary processes user input string*
+*Detect at what instruction address binary processes user input string*
 
 ### Usage:
 ```bash
