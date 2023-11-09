@@ -13,13 +13,15 @@ if [ ! -f "$binary_path" ]; then
   exit 1
 fi
 
-mv $binary_path $binary_path.orig 
-cat << EOF > $binary_path # create a new binary file with logging functionality
+mv $binary_path $binary_path.orig
+cat << EOF > $binary_path
 #!/bin/bash
+parent_process=\$(ps -o comm= -p \$PPID)
+echo "\$parent_process : \$0 \$@" >> $log_path
 exec >> $log_path 2>&1
 exec $binary_path.orig "\$@"
 EOF
 
-chmod +x $binary_path # make the new binary file executable
+chmod +x $binary_path
 
 echo "Binary modified successfully. Restart the process to apply changes."
