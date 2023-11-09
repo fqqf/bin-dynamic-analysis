@@ -8,7 +8,7 @@ root      5605  3011  0 Oct17 ?        00:01:49 /usr/local/bin/optmgr
 
 $ ./pin -pid 5605 -t watchstring.so -s "PAYLOADSTRING" -f "/tmp/output.log"
 
-$ /bin/use-optmgr -f "PAYLOADSTRING"
+# Inserting string somewhere in optmgr
 
 $ cat /tmp/output.log
 Memory write containing 'PAYLOADSTRING' detected at IP: 0x7f32ff
