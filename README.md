@@ -42,7 +42,7 @@ types
 ```
 
 ## logme
-*Warp binary with logger*
+*Logs calls to the binary by warping it with logger*
 
 ### Usage:
 ```bash
@@ -51,5 +51,6 @@ Binary modified successfully. Restart the process to apply changes.
 $ rhttpd 80 
 
 $ cat /var/log/rhttpd.log
+Thu Nov  9 05:19:05 PST 2023 : [bash] : /bin/rhttpd 80
 Listening server at :80
 ```
