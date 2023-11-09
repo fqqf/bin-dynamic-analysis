@@ -42,15 +42,16 @@ types
 ```
 
 ## logme
-*Intercepts calls to binary by warping it with logger*
+*Intercepts calls to binary by wrapping it with logger*
 
 ### Usage:
 ```bash
 $ logme /bin/rhttpd /var/log/rhttpd.log
-Binary modified successfully. Restart the process to apply changes.
+Interceptor created. Call the process
 $ rhttpd 80 
+Listening server at :80
 
 $ cat /var/log/rhttpd.log
-Thu Nov  9 05:19:05 PST 2023 : [bash] : /bin/rhttpd 80
+[bash][Thu Nov  9 05:34:52 PST 2023] : /bin/rhttpd 80
 Listening server at :80
 ```
