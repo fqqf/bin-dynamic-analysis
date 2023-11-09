@@ -1,5 +1,5 @@
 ## watchstring
-*Detect which part of code interacts with certain string*
+*Detect at what instruction address your binary processes user input string*
 
 ### Usage:
 ```bash
@@ -7,6 +7,8 @@ $ ps -ef | grep optmgr
 root      5605  3011  0 Oct17 ?        00:01:49 /usr/local/bin/optmgr
 
 $ ./pin -pid 5605 -t watchstring.so -s "PAYLOADSTRING" -f "/tmp/output.log"
+
+$ /bin/use-optmgr -f "PAYLOADSTRING"
 
 $ cat /tmp/output.log
 Memory write containing 'PAYLOADSTRING' detected at IP: 0x7f32ff
