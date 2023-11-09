@@ -4,7 +4,7 @@ binary_path=$1
 log_path=$2
 
 if [ -z "$binary_path" ] || [ -z "$log_path" ]; then
-  echo "Usage: logme-hard [binary_path] [log_path]"
+  echo "Usage: logme-strict [binary_path] [log_path]"
   exit 1
 fi
 
