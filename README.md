@@ -44,7 +44,7 @@ types
 ```
 
 ## logme
-*Intercepts calls to binary by wrapping it with logger.*
+*Intercepts calls to binary by wrapping it with logger. (logme-strict uses exec redirection)*
 
 ### Usage:
 ```bash
