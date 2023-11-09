@@ -1,0 +1,27 @@
+#!/bin/bash
+
+binary_path=$1
+log_path=$2
+
+if [ -z "$binary_path" ] || [ -z "$log_path" ]; then
+  echo "Usage: logme-hard [binary_path] [log_path]"
+  exit 1
+fi
+
+if [ ! -f "$binary_path" ]; then
+  echo "Error: Binary file does not exist"
+  exit 1
+fi
+
+mv $binary_path $binary_path.orig
+cat << EOF > $binary_path
+#!/bin/bash
+parent_process=\$(ps -o comm= -p \$PPID)
+echo "\$parent_process : \$0 \$@" >> $log_path
+exec >> $log_path 2>&1
+exec $binary_path.orig "\$@"
+EOF
+
+chmod +x $binary_path
+
+echo "Binary modified successfully. Restart the process to apply changes."
