@@ -44,10 +44,11 @@ types
 ```
 
 ## logme
-*Intercepts calls to binary by wrapping it with logger*
+*Intercepts calls to binary by wrapping it with logger.*
 
 ### Usage:
 ```bash
+$ chmod 0777 -R /var/log
 $ logme /bin/rhttpd /var/log/rhttpd.log
 Interceptor created. Call the process
 $ rhttpd 80 
