@@ -42,7 +42,7 @@ types
 ```
 
 ## logme
-*Logs calls to the binary by warping it with logger*
+*Intercepts calls to binary by warping it with logger*
 
 ### Usage:
 ```bash
