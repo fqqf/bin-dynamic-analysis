@@ -17,11 +17,10 @@ mv $binary_path $binary_path.orig
 cat << EOF > $binary_path
 #!/bin/bash
 parent_process=\$(ps -o comm= -p \$PPID)
-echo "\$parent_process : \$0 \$@" >> $log_path
-exec >> $log_path 2>&1
-exec $binary_path.orig "\$@"
+echo "[\$parent_process][`date`] : \$0 \$@" >> $log_path
+$binary_path.orig "\$@" | tee -a $log_path
 EOF
 
 chmod +x $binary_path
 
-echo "Binary modified successfully. Restart the process to apply changes."
+echo "Interceptor created. Call the process"
